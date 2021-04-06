@@ -1,6 +1,6 @@
 package programmers;
 
-import java.util.Stack;
+import java.util.*;
 
 public class kakao_crain {
     public int solution(int[][] board, int[] moves) {
