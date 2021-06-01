@@ -14,7 +14,11 @@ public class Factorial {
 
             int N = Integer.parseInt(st.nextToken());
             int K = Integer.parseInt(st.nextToken());
-
+            String a = "abc";
+            a.toUpperCase();
+            a.toLowerCase();
+            a.length();
+            a.substring(0,4);
             // nCk = n! / ((n-k)! * k!)
             System.out.println(factorial(N) / (factorial(N - K) * factorial(K)));
         }
