@@ -1,21 +1,19 @@
 package programmers;
 
 public class SosuFinid {
-
+//에라토스테네스의 체 
     class Solution {
         public int solution(int n) {
             int answer = 0;
+            int[] numbers = new int[n+1];
+            for(int i=2; i<=n; i++) numbers[i]=i;
+            for(int i=2; i<n; i++) {
+                if(numbers[i] == 0) continue;
+                for(int j=2*i; j<=n; j+=i) numbers[j] = 0;
+            }
 
-            for(int i=2; i<=n; i++) {
-                boolean flag = true;
-                for(int j=2; j<i; j++) { //두 번째 방법에서는 j<i 부분을 j<Math.sqrt(i) 로 바꾼다.
-                    if(i%j==0) {
-                        flag = false;
-                        break;
-                    }
-                }
-
-                if(flag==true) answer++;
+            for(int i=0; i<numbers.length; i++) {
+                if(numbers[i] != 0) answer++;
             }
 
             return answer;
