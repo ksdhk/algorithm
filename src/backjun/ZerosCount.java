@@ -16,6 +16,7 @@ public class ZerosCount {
 
             System.out.println(Math.min(count5, count2));
 
+
         }
 
         // 5의 승수를 구하는 함수
