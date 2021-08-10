@@ -1,6 +1,7 @@
 package programmers;
 
 public class JungsuJegop {
+    //push test
     class Solution {
         public long solution(long n) {
             long answer = 0;
