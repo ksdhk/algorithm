@@ -39,9 +39,8 @@ public class Triangle {
         if(depth == N - 1) return dp[depth][idx];
 
         // 탐색하지 않았던 값일 경우 다음 행의 양쪽 값 비교
-        if (dp[depth][idx] == null) {
+        if (dp[depth][idx] == null)
             dp[depth][idx] = Math.max(find(depth + 1, idx), find(depth + 1, idx + 1)) + arr[depth][idx];
-        }
         return dp[depth][idx];
 
     }

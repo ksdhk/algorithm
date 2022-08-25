@@ -2,7 +2,7 @@ package backjun;
 
 import java.util.Scanner;
 
-public class Math {
+public class MathMatics {
 
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
