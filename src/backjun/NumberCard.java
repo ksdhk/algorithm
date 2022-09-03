@@ -1,50 +1,63 @@
 package backjun;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class NumberCard {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st;
 
-        int cnt = in.nextInt();
-        int[] Mycard = new int[cnt];
+        int N = Integer.parseInt(br.readLine()); // 카드의 개수
+        int[] cards = new int[N];
 
-        for(int i = 0 ; i< cnt; i++){
-            Mycard[i] = in.nextInt();
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            cards[i] = Integer.parseInt(st.nextToken());
         }
 
+        Arrays.sort(cards); // 이분탐색할 배열은 정렬되어 있어야 함.
+        int M = Integer.parseInt(br.readLine()); // 구별할 수의 개수
 
-        int pCnt = in.nextInt();
-        int[] result = new int[pCnt];
+        StringBuilder sb = new StringBuilder();
+        st = new StringTokenizer(br.readLine());
 
-        for(int i = 0 ; i< pCnt; i++){
-            result[i] = in.nextInt();
+        for (int i = 0; i < M; i++) {
+            int temp = Integer.parseInt(st.nextToken());
+            sb.append(binarySearch(cards, N, temp) + " ");
         }
-        boolean trf = false;
-        for(int i = 0 ; i< pCnt; i++){
-            trf = false;
-            for(int j=0; j< cnt ; j++) {
-                if (Mycard[j] == result[i]) {
-                    result[i] = 1;
-                    trf = true;
-                    break;
-                }
+
+        bw.write(sb.toString() + "\n");
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+
+    public static int binarySearch(int[] cards, int N, int search) {
+        int first = 0;
+        int last = N - 1;
+        int mid = 0;
+
+        while (first <= last) {
+            mid = (first + last) / 2; // 중간 인덱스
+
+            if (cards[mid] == search) { // 중간값과 찾으려는 수가 같은 경우
+                return 1;
             }
 
-            if(!trf)
-            result[i] = 0;
-        }
-
-
-        for(int i = 0 ; i< pCnt; i++){
-            if(i+1!=pCnt)
-                System.out.print(result[i]+" ");
-            else{
-                System.out.print(result[i]);
+            if (cards[mid] < search) { // 중간값이 찾으려는 수보다 작으면, 그 이하로는 볼 필요 없음.
+                first = mid + 1;
+            } else { // 중간값이 찾으려는 수보다 크면, 그 이상으로는 볼 필요 없음.
+                last = mid - 1;
             }
         }
 
-
+        return 0;
     }
 
 }
