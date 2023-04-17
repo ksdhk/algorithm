@@ -1,0 +1,16 @@
+class Solution {
+    public int solution(int[] array) {
+        int answer = 0;
+        String ans = "";
+        for (int i =0;i<array.length;i++){
+           ans = String.valueOf(array[i]);
+           while(ans.contains("7")){
+               answer++;
+               ans = ans.replaceFirst("7","");              
+           }
+        }
+        
+        
+        return answer;
+    }
+}
